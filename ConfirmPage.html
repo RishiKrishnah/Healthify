@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmation</title>
+</head>
+<body>
+    <h1>Appointment Confirmation</h1>
+
+    <?php if (isset($_GET['patientID'], $_GET['doctorID'], $_GET['doctorName'], $_GET['department'], $_GET['time'])): ?>
+        <p><strong>Patient ID:</strong> <?php echo htmlspecialchars($_GET['patientID']); ?></p>
+        <p><strong>Doctor ID:</strong> <?php echo htmlspecialchars($_GET['doctorID']); ?></p>
+        <p><strong>Doctor Name:</strong> <?php echo htmlspecialchars($_GET['doctorName']); ?></p>
+        <p><strong>Department:</strong> <?php echo htmlspecialchars($_GET['department']); ?></p>
+        <p><strong>Appointment Time:</strong> <?php echo htmlspecialchars($_GET['time']); ?></p>
+    <?php else: ?>
+        <p>Error: No appointment data found.</p>
+    <?php endif; ?>
+    
+</body>
+</html>

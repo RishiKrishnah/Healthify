@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="mainstyles.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <!-- Error Message Display -->
+        <p id="errorMessage" class="error-message"></p>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <div class="input-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="options">
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                <a href="forgot-pas.html" id="forgotPassword">Forgot password?</a>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="signup-option">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- JavaScript for AJAX Login -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Clear previous errors
+            document.getElementById("errorMessage").innerText = "";
+            
+            const formData = new FormData(this);
+
+            fetch("backend/login.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "HomePage.html";
+                } else {
+                    document.getElementById("errorMessage").innerText = data.message;
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                document.getElementById("errorMessage").innerText = "Login failed. Please try again.";
+            });
+        });
+    </script>
+
+</body>
+</html>
