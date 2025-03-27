@@ -30,6 +30,17 @@ body {
     transition: background 0.4s, color 0.4s;
     padding-top: 500px;
 }
+.bookappointmentbody {
+    background: #0a0d14;
+    color: #d0d0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background 0.4s, color 0.4s;
+    padding-top: 600px;
+    padding-bottom: 500px;
+}
 
 select {
     width: 100%;
@@ -108,6 +119,25 @@ select {
 }
 
 #address:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    height: 61px; /* Adjust height to match inputs */
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #d0d0d0;
+    font-size: 1rem;
+    outline: none;
+    resize: none; /* Prevent resizing */
+    margin-top: 5px;
+}
+
+/* Ensure consistency with focus effects */
+textarea:focus {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
