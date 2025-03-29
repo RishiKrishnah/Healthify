@@ -11,13 +11,20 @@
     <div class="signup-container">
         <h2>Sign Up</h2>
         
-        <!-- Signup Form with Updated Fields -->
         <form action="signup.php" method="POST" id="signupForm">
             <div class="input-container">
                 <label for="fullname">Full Name:</label>
                 <input type="text" name="fullname" id="fullname" required>
             </div>
-        
+
+            <div class="input-container Dropdown">
+                <label for="userType">Register as:</label>
+                <select name="userType" id="userType" required onchange="toggleDoctorFields()">
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+            </div>
+
             <div class="input-container Dropdown">
                 <label for="gender">Gender:</label>
                 <select name="gender" id="gender" required>
@@ -27,55 +34,83 @@
                     <option value="other">Other</option>
                 </select>
             </div>
-        
+
             <div class="input-container">
                 <label for="dob">Date of Birth:</label>
                 <input type="date" name="dob" id="dob" required>
             </div>
-        
+
             <div class="input-container">
                 <label for="contactNumber">Contact Number:</label>
                 <input type="tel" name="contactNumber" id="contactNumber" pattern="[0-9]{10}" required>
             </div>
-        
+
             <div class="input-container">
                 <label for="email">Email Address:</label>
                 <input type="email" name="email" id="email" required>
             </div>
-        
+
             <div class="input-container">
                 <label for="address">Home Address:</label>
                 <textarea name="address" id="address" rows="3" required></textarea>
             </div>
-        
+
             <div class="input-container">
                 <label for="emergencyContactName">Emergency Contact Name:</label>
                 <input type="text" name="emergencyContactName" id="emergencyContactName" required>
             </div>
-        
+
             <div class="input-container">
                 <label for="emergencyContactNumber">Emergency Contact Number:</label>
                 <input type="tel" name="emergencyContactNumber" id="emergencyContactNumber" pattern="[0-9]{10}" required>
             </div>
-        
+
+            <!-- Doctor-Specific Fields (Initially Hidden) -->
+            <div id="doctorFields" style="display: none;">
+                <h3>Doctor Details</h3>
+
+                <div class="input-container Dropdown">
+                    <label for="doctorDepartment">Department:</label>
+                    <select name="doctorDepartment" id="doctorDepartment">
+                        <option value="">Select Department</option>
+                        <option value="General Physician">General Physician</option>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Neurologist">Neurologist</option>
+                        <option value="Orthopedic">Orthopedic</option>
+                        <option value="Pediatrician">Pediatrician</option>
+                        <option value="Dermatologist">Dermatologist</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <label for="experience">Years of Experience:</label>
+                    <input type="number" name="experience" id="experience" min="0">
+                </div>
+
+                <div class="input-container">
+                    <label for="qualification">Qualification:</label>
+                    <input type="text" name="qualification" id="qualification">
+                </div>
+            </div>
+
             <div class="input-container">
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" required>
             </div>
-        
+
             <div class="input-container">
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required>
             </div>
-        
+
             <div class="input-container">
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" required>
             </div>
-        
+
             <!-- Error Message -->
             <div class="error" id="errorMsg"></div>
-        
+
             <button type="submit">Sign Up</button>
         </form>
 
@@ -86,6 +121,17 @@
     </div>
 
     <script>
+        function toggleDoctorFields() {
+            const userType = document.getElementById("userType").value;
+            const doctorFields = document.getElementById("doctorFields");
+
+            if (userType === "doctor") {
+                doctorFields.style.display = "block";
+            } else {
+                doctorFields.style.display = "none";
+            }
+        }
+
         // Form validation before submission
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             const password = document.getElementById('password').value;
@@ -98,6 +144,7 @@
                 return;
             }
         });
+        
     </script>
 
 </body>

@@ -21,18 +21,19 @@
             </ul>
         </nav>
         <div class="auth-buttons">
-            <a href="signup.html"><button class="signup">Sign Up</button></a>
-            <a href="Login.html"><button class="login">Login</button></a>
-            <a href="settings.html"><button class="settings">&#9881;</button></a> <!-- Unicode settings icon -->
+            <a href="signup.html" id="signupBtn"><button class="signup">Sign Up</button></a>
+            <a href="LoginPage.html" id="loginBtn"><button class="login">Login</button></a>
+            <button id="logoutBtn" class="logout" style="display: none;" onclick="logout()">Logout</button>
+            <a href="settings.html"><button class="settings">&#9881;</button></a>
         </div>
-        
     </header>
 
     <section class="hero">
         <div class="hero-content">
             <h2>Your Health, Our Priority</h2>
             <p>Book your doctor appointments easily with Healthify.</p>
-            <button onclick="bookAppointment()">Book Now</button>
+            <button id="bookNowBtn" onclick="handleBooking()">Book Now</button>
+            <button id="doctorPortalBtn" onclick="openDoctorPortal()" style="display: none;">Doctor's Portal</button>
         </div>
     </section>
 
